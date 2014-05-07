@@ -8,8 +8,6 @@ public class RxNode  implements NodeComunication {
 
 	private float nodeData;
 	
-	
-	
 	public void receive(float nodeData) {
 		this.nodeData = nodeData;	
 	}
@@ -18,13 +16,11 @@ public class RxNode  implements NodeComunication {
 		return this.nodeData;
 	}
 
+	// Metodo non usato
 	public float send() {
 		return 0;
 	}
-
-	public void set(float nodeData) 
-	{
-		
-	}
+	// Metodo non usato
+	public void set(float nodeData) {}
 
 }

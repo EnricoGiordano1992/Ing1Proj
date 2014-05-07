@@ -1,40 +1,64 @@
 package specializzazioni;
 
+import java.util.ArrayList;
+
+import nodi.Node;
 import nodi.NodeComunication;
 
 
 //si associa solo a Processor
 public class TxRxNode implements NodeComunication {
 
+	private float nodeData;
+	private ArrayList<NodeComunication> observers;
+	
+	public TxNode(){
+		observers = new ArrayList<NodeComunication>();
+	}
+	/*
+	 * Aggiunge un NodeComunication all'arraylist dei nodi osservatori
+	 */
+	public void addRxNode( NodeComunication node )
+	{
+		observers.add( node );
+	}
+	public void removeRxNode( NodeComunication node )
+	{
+		observers.remove( node );
+	}
+	
+	// Crea un canale con il modulo RxNode di un nodo
+	public boolean createChannelTo( Node node )
+	{
+		addRxNode( node.getNodeComm() );
+		return true;
+	}
+	
+	// Crea un canale con il modulo RxNode di un nodo
+	public boolean removeChannelTo( Node node )
+	{
+		removeRxNode( node.getNodeComm() );
+		return true;
+	}
+	// Comunico a tutti i nodi collegati i dati da inviare
+	public float send() 
+	{
+		for ( NodeComunication node : observers )
+		{
+			node.receive( this.nodeData );
+		}
+		return 0;
+	}
+	// Salvo il valore da inviare sul canale
+	public void set(float nodeData) 
+	{
+		this.nodeData = nodeData;		
+	}
 	public void receive(float nodeData) {
-		// TODO Auto-generated method stub
-		
+		this.nodeData = nodeData;	
 	}
 
 	public float read() {
-		// TODO Auto-generated method stub
-		
-		//leggo da detector
-			
-		return 0;
-	}
-
-	public float send() {
-		// TODO Auto-generated method stub
-		
-		//in questo faccio il set 2 volte perché invio 2 valori (uno al monitor delle macchine 
-		//e uno al numero posti disponibili
-
-		//Invio ai 2 display, ed è simultaneo
-
-		return 0;
-	}
-
-	//float è perché gli invio la media
-	public void set(float nodeData) {
-		// TODO Auto-generated method stub
-		
-		
-		
+		return this.nodeData;
 	}
 }
