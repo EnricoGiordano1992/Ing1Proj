@@ -12,7 +12,7 @@ public class TxRxNode implements NodeComunication {
 	private float nodeData;
 	private ArrayList<NodeComunication> observers;
 	
-	public TxNode(){
+	public TxRxNode(){
 		observers = new ArrayList<NodeComunication>();
 	}
 	/*
