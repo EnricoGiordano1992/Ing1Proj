@@ -1,6 +1,7 @@
 package nodi;
 
 import specializzazioni.TxNode;
+import specializzazioni.TxRxNode;
 
 public abstract class Node {
 	protected NodeComunication nodeComm;
@@ -37,33 +38,13 @@ public abstract class Node {
 		return nodeComp.operation ( nodeData , threshold );
 	}
 	
-	/*
+	/* ---------------------------
 	 * Metodi aggiunti da Giovanni
-	 */
+	 * --------------------------- */
 	public NodeComunication getNodeComm()
 	{
 		return nodeComm;
 	}
-	/*
-	 * Crea un canale con un altro nodo
-	 * Ritorna true se è stato creato altrimenti ritorna false
-	 */
-	public boolean createChannelTo( Node node )
-	{
-		if ( !(this.nodeComm instanceof TxNode) && node != null )
-			return false;
-		
-		return ((TxNode)nodeComm).createChannelTo(node);
-	}
-	/*
-	 * Rimuove un canale con un altro nodo
-	 * Ritorna true se è stato eliminato altrimenti ritorna false
-	 */
-	public boolean removeChannelTo( Node node )
-	{
-		if ( !(this.nodeComm instanceof TxNode) && node != null )
-			return false;
-		
-		return ((TxNode)nodeComm).removeChannelTo(node);
-	}
+	public abstract boolean createChannelTo( Node node );
+	public abstract boolean removeChannelTo( Node node );
 }

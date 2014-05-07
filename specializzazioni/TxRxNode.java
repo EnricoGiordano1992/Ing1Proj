@@ -11,9 +11,11 @@ public class TxRxNode implements NodeComunication {
 
 	private float nodeData;
 	private ArrayList<NodeComunication> observers;
+	private Node dadNode;
 	
-	public TxRxNode(){
+	public TxRxNode(Node dadNode ){
 		observers = new ArrayList<NodeComunication>();
+		this.dadNode = dadNode;
 	}
 	/*
 	 * Aggiunge un NodeComunication all'arraylist dei nodi osservatori
@@ -55,7 +57,8 @@ public class TxRxNode implements NodeComunication {
 		this.nodeData = nodeData;		
 	}
 	public void receive(float nodeData) {
-		this.nodeData = nodeData;	
+		this.nodeData = nodeData;
+		this.dadNode.display();
 	}
 
 	public float read() {

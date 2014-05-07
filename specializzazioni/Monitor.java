@@ -6,15 +6,25 @@ public class Monitor extends Node {
 
 	public Monitor(String nodeName, boolean W) {
 		super(nodeName, W);
-		this.nodeComm = new RxNode();
+		this.nodeComm = new RxNode(this);
 	}
 
 	/*
 	 * Mostra i dati ricevuti attraverso l'oggetto nodeComm
-	 * @see nodi.Node#display()
 	 */
 	public void display() {		
 		System.out.println( this.name + " : " + this.nodeComm.read() );
+	}
+
+	// Metodi non usati
+	@Override
+	public boolean createChannelTo(Node node) {
+		return false;
+	}
+
+	@Override
+	public boolean removeChannelTo(Node node) {
+		return false;
 	}
 
 }
