@@ -16,6 +16,7 @@ public class Simulator {
 		processor.createChannelTo( monitor );
 		processor.createChannelTo( monitor_ch );
 		
+		// simulo il passaggio di un Gooby
 		detector.set( 1 );
 		detector.send();
 		
