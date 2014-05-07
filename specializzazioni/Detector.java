@@ -1,12 +1,17 @@
 package specializzazioni;
 
 import nodi.Node;
+import nodi.NodeComunication;
 
 public class Detector extends Node {
 
 	public Detector(String nodeName, boolean W) {
 		super(nodeName, W);
-		this.nodeComm = new TxNode();
+		// TODO: da modificare assolutamente
+		this.nodeComm = new TxNode( null );
+	}
+	public void setCommNode( NodeComunication node ){
+		
 	}
 
 	public void display() {

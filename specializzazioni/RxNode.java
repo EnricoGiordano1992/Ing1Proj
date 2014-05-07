@@ -8,6 +8,8 @@ public class RxNode  implements NodeComunication {
 
 	private float nodeData;
 	
+	
+	
 	public void receive(float nodeData) {
 		this.nodeData = nodeData;	
 	}

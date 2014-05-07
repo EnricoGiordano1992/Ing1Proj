@@ -15,12 +15,6 @@ public class Simulator {
 		/*
 		 * Il detector ha rilevato 1 macchina in entrata
 		 */
-		detector.set( 1 );
-		detector.send();
-		
-		processor.receive( detector.read() );
-		
-		monitor.display();
 	}
 
 }

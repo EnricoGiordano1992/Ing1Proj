@@ -15,5 +15,9 @@ public class Processor extends Node {
 		// TODO Auto-generated method stub
 
 	}
+	public NodeComunication getRxNode(){
+		return this.nodeComm;
+	}
+	
 
 }
