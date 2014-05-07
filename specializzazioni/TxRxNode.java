@@ -26,7 +26,7 @@ public class TxRxNode implements NodeComunication {
 		//e uno al numero posti disponibili
 
 		//Invio ai 2 display, ed è simultaneo
-		
+
 		return 0;
 	}
 

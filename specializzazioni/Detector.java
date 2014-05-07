@@ -10,8 +10,21 @@ public class Detector extends Node {
 	}
 
 	public void display() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Componente: " + this.name + " = " + this.data );
 	}
-
+	/*
+	 * Devo inviare al processor la rilevazione di una nuova macchina
+	 */
+	public void newCar()
+	{
+		this.set( 1 );
+	}
+	/*
+	 * Invio al processor l'uscita di una macchina
+	 */
+	public void exitCar()
+	{
+		this.set( -1 );
+	}
+	
 }
