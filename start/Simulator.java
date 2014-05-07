@@ -16,10 +16,13 @@ public class Simulator {
 		processor.createChannelTo( monitor );
 		processor.createChannelTo( monitor_ch );
 		
-		// simulo il passaggio di un Gooby
-		detector.set( 1 );
-		detector.send();
 		
+		for ( int i = 0; i < 800; i++ )
+		{
+			// simulo il passaggio di un Gooby
+			detector.set( -1 + (int)(Math.random() * 3) );
+			detector.send();
+		}
 	}
 
 }

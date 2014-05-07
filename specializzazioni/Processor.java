@@ -3,6 +3,9 @@ package specializzazioni;
 import nodi.Node;
 
 public class Processor extends Node {
+	
+	private int postiLiberi = 500;
+	private int carhour = 0;
 
 	public Processor(String nodeName, boolean W) {
 		super(nodeName, W);
@@ -10,8 +13,21 @@ public class Processor extends Node {
 	}
 
 	public void display() {
-		System.out.println("Nuova macchina con valore : " + nodeComm.read());
-		nodeComm.set( nodeComm.read() / 2 );
+		// è uscita una macchina
+		if( nodeComm.read() < 0)
+		{
+			if ( postiLiberi < 500 )
+				postiLiberi++;
+		}
+		else if ( nodeComm.read() > 0)
+		{
+			if ( postiLiberi - 1 <= 0 )
+				System.out.println("Parcheggio pieno...attendere prego");
+			else
+				postiLiberi--;
+		}
+		
+		nodeComm.set( postiLiberi );
 		nodeComm.send();
 	}
 	
