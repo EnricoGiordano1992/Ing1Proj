@@ -1,29 +1,50 @@
 package start;
 
-import java.sql.Time;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.io.PrintStream;
+import java.text.AttributedCharacterIterator.Attribute;
+
+import Text.AttributedTextArea;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.io.*;
 
 import nodi.*;
 import specializzazioni.*;
-import timer.Timer;
+import Grafica.Grafica;
 
 public class Simulator {
 
+	public static Grafica g;
+	
 	public static void main(String[] args) {
 
+		g = new Grafica();
+		
 		Node detector = new Detector("Detector", false);	
-		Node monitor = new Monitor("Display free Park", false);
-		Node monitor_ch = new Monitor("Display car/hour", false);
+		Monitor monitor = new Monitor("Display free Park", false);
+		Monitor monitor_ch = new Monitor("Display car/hour", false);
 		Node processor = new Processor("Processor", false);
 
 		detector.createChannelTo( processor );
 		processor.createChannelTo( monitor );
 		processor.createChannelTo( monitor_ch );
 		
+		//monitor.setGG(g);
+		
 		for ( int i = 0; i < 800; i++ )
 		{
 			try{
 				int randomNum = (int)(Math.random()*500);
 				Thread.currentThread().sleep(randomNum);
+				
 				}
 				catch(InterruptedException ie){
 				}
@@ -44,6 +65,8 @@ public class Simulator {
 				detector.set( -1 );
 				detector.send();
 			}
+			
+			
 		}
 	}
 
