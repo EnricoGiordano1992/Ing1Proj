@@ -9,5 +9,10 @@ public interface NodeComunication {
 	float send();
 
 	void set(float nodeData);
+	
+	// Metodi aggiunti da Giovanni
+	Node getDadNode();
+	
+	void setChannel(String string);
 
 }

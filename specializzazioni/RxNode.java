@@ -24,6 +24,10 @@ public class RxNode  implements NodeComunication {
 	public float read() {
 		return this.nodeData;
 	}
+	public Node getDadNode()
+	{
+		return dadNode;
+	}
 
 	// Metodo non usato
 	public float send() {
@@ -31,5 +35,11 @@ public class RxNode  implements NodeComunication {
 	}
 	// Metodo non usato
 	public void set(float nodeData) {}
+
+	@Override
+	public void setChannel(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

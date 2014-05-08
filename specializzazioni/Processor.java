@@ -28,7 +28,13 @@ public class Processor extends Node {
 		}
 		
 		nodeComm.set( postiLiberi );
+		nodeComm.setChannel("Display");
 		nodeComm.send();
+		
+		nodeComm.set( postiLiberi / 2 );
+		nodeComm.setChannel("Display car/hour");
+		nodeComm.send();
+		
 	}
 	
 	/*

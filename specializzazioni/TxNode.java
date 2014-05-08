@@ -1,6 +1,7 @@
 package specializzazioni;
 
 import java.util.ArrayList;
+
 import nodi.Node;
 import nodi.NodeComunication;
 
@@ -58,5 +59,15 @@ public class TxNode implements NodeComunication  {
 	// Metodo non usato
 	public float read() {
 		return 0;
+	}
+	@Override
+	public Node getDadNode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setChannel(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }

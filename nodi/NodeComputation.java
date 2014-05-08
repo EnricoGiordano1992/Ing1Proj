@@ -1,5 +1,5 @@
 package nodi;
 
 public interface NodeComputation {
-	String operation(float nodeData, float threshold);
+	public String operation(float nodeData, float threshold);
 }
