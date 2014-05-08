@@ -10,6 +10,7 @@ public class TxNode implements NodeComunication  {
 	
 	private float nodeData;
 	private ArrayList<NodeComunication> observers;
+	private int selectedChannel = 0;
 	
 	public TxNode(){
 		observers = new ArrayList<NodeComunication>();
@@ -39,14 +40,21 @@ public class TxNode implements NodeComunication  {
 		removeRxNode( node.getNodeComm() );
 		return true;
 	}
+	// Decido a quale componente inviare i dati
+	@Override
+	public void setChannel( String name )
+	{
+		for ( int i = 0; i < observers.size() ; i++ )
+		{
+			if ( observers.get(i).getDadNode().name.compareTo(name) == 0)
+				selectedChannel = i;
+		}
+	}
 	// Comunico a tutti i nodi collegati i dati da inviare
 	public float send() 
 	{
-		for ( NodeComunication node : observers )
-		{
-			node.receive( this.nodeData );
-		}
-		return 0;
+		observers.get(selectedChannel).receive( this.nodeData );
+		return this.nodeData;
 	}
 	// Salvo il valore da inviare sul canale
 	public void set(float nodeData) 
@@ -64,10 +72,5 @@ public class TxNode implements NodeComunication  {
 	public Node getDadNode() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	@Override
-	public void setChannel(String string) {
-		// TODO Auto-generated method stub
-		
 	}
 }

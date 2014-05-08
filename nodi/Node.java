@@ -30,7 +30,7 @@ public abstract class Node {
 	{
 		nodeComm.set( nodeData );
 	}
-	public String operation ( float nodeData , float threshold )
+	public float operation ( float nodeData , float threshold )
 	{
 		return nodeComp.operation ( nodeData , threshold );
 	}

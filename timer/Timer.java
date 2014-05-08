@@ -10,8 +10,6 @@ public class Timer implements Runnable {
 		
 	}
 
-	
-	
 	public int getCounter() {
 		
 		return this.counter;
