@@ -1,6 +1,5 @@
 package start;
 
-import nodi.*;
 import specializzazioni.*;
 import Grafica.Grafica;
 
@@ -12,12 +11,15 @@ public class Simulator {
 
 		g = new Grafica();
 		
-		Node detector = new Detector("Detector", false);	
+		Detector detector = new Detector("Detector", false);	
 		Monitor monitor = new Monitor("Display free Park", false);
 		Monitor monitor_ch = new Monitor("Display car/hour", false);
-		Node processor = new Processor("Processor", false);
+		Processor processor = new Processor("Processor", false);
 
 		detector.createChannelTo( processor );
+		detector.createChannelTo( monitor_ch );
+		detector.createChannelTo( monitor );
+		
 		processor.createChannelTo( monitor );
 		processor.createChannelTo( monitor_ch );
 		
