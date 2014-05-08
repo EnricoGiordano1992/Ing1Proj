@@ -61,4 +61,12 @@ public class Monitor extends Node {
 		return false;
 	}
 
+	@Override
+	public void stopTimer() {}
+
+	@Override
+	public void update() {
+		display();		
+	}
+
 }

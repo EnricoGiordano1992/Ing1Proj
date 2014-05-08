@@ -1,18 +1,13 @@
 package timer;
 
-import java.util.Calendar;
-
 public class Timer implements Runnable {
 
 	private int counter;
 
 	public Timer(int counter) {
-
 		this.counter = counter;
 	}
 
-	
-	
 	public int getCounter() {
 		
 		return this.counter;

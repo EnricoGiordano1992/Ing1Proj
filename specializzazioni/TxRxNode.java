@@ -71,7 +71,7 @@ public class TxRxNode implements NodeComunication {
 	
 	public void receive(float nodeData) {
 		this.nodeData = nodeData;
-		this.dadNode.display();
+		this.dadNode.update();
 	}
 
 	public float read() {

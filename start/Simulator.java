@@ -1,5 +1,6 @@
 package start;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.io.PrintStream;
@@ -19,6 +20,10 @@ import java.io.*;
 import nodi.*;
 import specializzazioni.*;
 import Grafica.Grafica;
+=======
+import nodi.*;
+import specializzazioni.*;
+>>>>>>> Color
 
 public class Simulator {
 
@@ -42,9 +47,14 @@ public class Simulator {
 		for ( int i = 0; i < 800; i++ )
 		{
 			try{
+<<<<<<< HEAD
 				int randomNum = (int)(Math.random()*500);
 				Thread.currentThread().sleep(randomNum);
 				
+=======
+				int randomNum = (int)(Math.random()*200);
+					Thread.currentThread().sleep(randomNum);
+>>>>>>> Color
 				}
 				catch(InterruptedException ie){
 				}
@@ -68,6 +78,8 @@ public class Simulator {
 			
 			
 		}
+		processor.stopTimer();
+		
 	}
 
 }

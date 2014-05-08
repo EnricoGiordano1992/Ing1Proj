@@ -1,8 +1,5 @@
 package nodi;
 
-import specializzazioni.TxNode;
-import specializzazioni.TxRxNode;
-
 public abstract class Node {
 	protected NodeComunication nodeComm;
 	protected NodeComputation nodeComp;
@@ -33,7 +30,7 @@ public abstract class Node {
 	{
 		nodeComm.set( nodeData );
 	}
-	public String operation ( float nodeData , float threshold )
+	public float operation ( float nodeData , float threshold )
 	{
 		return nodeComp.operation ( nodeData , threshold );
 	}
@@ -47,4 +44,6 @@ public abstract class Node {
 	}
 	public abstract boolean createChannelTo( Node node );
 	public abstract boolean removeChannelTo( Node node );
+	public abstract void stopTimer();
+	public abstract void update();
 }

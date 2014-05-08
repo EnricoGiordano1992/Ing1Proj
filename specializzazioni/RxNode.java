@@ -18,7 +18,7 @@ public class RxNode  implements NodeComunication {
 	public void receive(float nodeData) {
 		this.nodeData = nodeData;
 		// si può aggiungere un metodo update nella classe node che poi richiama in metodo display
-		this.dadNode.display();
+		this.dadNode.update();
 	}
 
 	public float read() {
