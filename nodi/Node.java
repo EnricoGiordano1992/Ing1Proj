@@ -1,8 +1,5 @@
 package nodi;
 
-import specializzazioni.TxNode;
-import specializzazioni.TxRxNode;
-
 public abstract class Node {
 	protected NodeComunication nodeComm;
 	protected NodeComputation nodeComp;

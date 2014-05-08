@@ -1,10 +1,7 @@
 package start;
 
-import java.sql.Time;
-
 import nodi.*;
 import specializzazioni.*;
-import timer.Timer;
 
 public class Simulator {
 

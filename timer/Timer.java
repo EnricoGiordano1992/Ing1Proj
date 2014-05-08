@@ -1,7 +1,5 @@
 package timer;
 
-import java.util.Calendar;
-
 public class Timer implements Runnable {
 
 	private int counter;
