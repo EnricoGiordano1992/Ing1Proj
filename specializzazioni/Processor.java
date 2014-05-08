@@ -43,13 +43,7 @@ public class Processor extends Node {
 		
 		nodeComm.set( (float) carhour / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
-		nodeComm.send();
-		
-		System.out.println("Macchine totali \t: " + carhour );
-		System.out.println("Ora             \t: " + timer.getCounter());
-		
-		System.out.println();
-		
+		nodeComm.send();		
 	}
 	
 	/*
