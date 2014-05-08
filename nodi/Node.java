@@ -45,4 +45,5 @@ public abstract class Node {
 	public abstract boolean createChannelTo( Node node );
 	public abstract boolean removeChannelTo( Node node );
 	public abstract void stopTimer();
+	public abstract void update();
 }

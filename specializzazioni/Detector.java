@@ -55,4 +55,8 @@ public class Detector extends Node {
 	}
 	@Override
 	public void stopTimer() {}
+	@Override
+	public void update() {
+		display();		
+	}
 }

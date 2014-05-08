@@ -9,5 +9,4 @@ public class Average implements NodeComputation {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

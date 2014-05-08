@@ -30,4 +30,9 @@ public class Monitor extends Node {
 	@Override
 	public void stopTimer() {}
 
+	@Override
+	public void update() {
+		display();		
+	}
+
 }

@@ -82,4 +82,9 @@ public class Processor extends Node {
 	{
 		t.interrupt();
 	}
+
+	@Override
+	public void update() {
+		display();		
+	}
 }
