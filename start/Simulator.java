@@ -1,7 +1,10 @@
 package start;
 
-import specializzazioni.*;
-import Grafica.Grafica;
+import grafica.Grafica;
+import node.Detector;
+import node.Monitor;
+import node.Processor;
+import channel.WirelessChannel;
 
 public class Simulator {
 
@@ -11,21 +14,19 @@ public class Simulator {
 
 		g = new Grafica();
 		
+		WirelessChannel wl = new WirelessChannel("Rete Wireless");
+		
 		Detector detector = new Detector("Detector", false);	
 		Monitor monitor = new Monitor("Display free Park", false);
 		Monitor monitor_ch = new Monitor("Display car/hour", false);
 		Processor processor = new Processor("Processor", false);
-
-		detector.createChannelTo( processor );
-		detector.createChannelTo( monitor_ch );
-		detector.createChannelTo( monitor );
 		
-		processor.createChannelTo( monitor );
-		processor.createChannelTo( monitor_ch );
-		
-		//monitor.setGG(g);
-		
-		for ( int i = 0; i < 800; i++ )
+		wl.addNode(monitor);
+		wl.addNode(monitor_ch);
+		wl.addNode(detector);
+		wl.addNode(processor);
+			
+		for ( int i = 0; i < 10; i++ )
 		{
 			try{
 				int randomNum = (int)(Math.random()*500);
@@ -35,25 +36,28 @@ public class Simulator {
 				}
 			
 			if(i == 0){
-				detector.set(1);
-				detector.send();
+				detector.newCar();
 			}
 			if(i % 5 != 0)
 			{
 				//simulo il passaggio di un Gooby
-				detector.set( -1 + (int)(Math.random() * 5) );
-				detector.send();
+				detector.exitCar();
 			}
 			
 			else
 			{
-				detector.set( -1 );
-				detector.send();
+				
+				detector.car( -1 + (int)(Math.random() * 5) );
 			}
 			
 			
 		}
 		processor.stopTimer();
+		wl.removeNode(monitor);
+		wl.removeNode(monitor_ch);
+		wl.removeNode(processor);
+		wl.removeNode(detector);
+		
 		
 	}
 

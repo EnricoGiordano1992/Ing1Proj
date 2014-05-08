@@ -1,6 +1,8 @@
-package specializzazioni;
+package node;
 
-import nodi.Node;
+import nodeComputation.Add;
+import nodeComputation.Sub;
+import nodeComunication.TxRxNode;
 import timer.*;
 
 public class Processor extends Node {
@@ -50,33 +52,6 @@ public class Processor extends Node {
 		nodeComm.set( (float) carhour / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
 		nodeComm.send();		
-	}
-	
-	/*
-	 * Crea un canale con un altro nodo
-	 * Ritorna true se � stato creato altrimenti ritorna false
-	 */
-	public boolean createChannelTo( Node node )
-	{
-		if ( this.nodeComm instanceof TxRxNode && node != null )
-		{
-			return ((TxRxNode) nodeComm).createChannelTo(node);
-		}
-		else
-			return false;
-	}
-	/*
-	 * Rimuove un canale con un altro nodo
-	 * Ritorna true se � stato eliminato altrimenti ritorna false
-	 */
-	public boolean removeChannelTo( Node node )
-	{
-		if ( this.nodeComm instanceof TxRxNode && node != null )
-		{
-			return ((TxRxNode)nodeComm).removeChannelTo(node);
-		}
-		else
-			return false;	
 	}
 	public void stopTimer()
 	{

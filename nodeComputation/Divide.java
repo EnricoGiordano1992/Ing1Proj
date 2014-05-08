@@ -1,6 +1,5 @@
-package specializzazioni;
+package nodeComputation;
 
-import nodi.NodeComputation;
 
 public class Divide implements NodeComputation {
 

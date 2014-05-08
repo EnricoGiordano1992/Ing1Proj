@@ -1,4 +1,6 @@
-package nodi;
+package nodeComunication;
+
+import node.Node;
 
 public interface NodeComunication {
 
@@ -11,8 +13,10 @@ public interface NodeComunication {
 	void set(float nodeData);
 	
 	// Metodi aggiunti da Giovanni
-	Node getDadNode();
+	Node getParentNode();
 	
 	void setChannel(String string);
+	boolean createChannelTo( Node node );
+	boolean removeChannelTo( Node node );
 
 }

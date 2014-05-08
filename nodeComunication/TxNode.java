@@ -1,9 +1,8 @@
-package specializzazioni;
+package nodeComunication;
 
 import java.util.ArrayList;
 
-import nodi.Node;
-import nodi.NodeComunication;
+import node.Node;
 
 //riguarda solo Detector
 public class TxNode implements NodeComunication  {
@@ -11,33 +10,28 @@ public class TxNode implements NodeComunication  {
 	private float nodeData;
 	private ArrayList<NodeComunication> observers;
 	private int selectedChannel = 0;
+	private Node parentNode;
 	
-	public TxNode(){
+	public TxNode( Node n ){
 		observers = new ArrayList<NodeComunication>();
+		this.parentNode = n;
 	}
-	/*
-	 * Aggiunge un NodeComunication all'arraylist dei nodi osservatori
-	 */
-	public void addRxNode( NodeComunication node )
-	{
-		observers.add( node );
-	}
-	public void removeRxNode( NodeComunication node )
-	{
-		observers.remove( node );
-	}
-	
+
 	// Crea un canale con il modulo RxNode di un nodo
+	@Override
 	public boolean createChannelTo( Node node )
 	{
-		addRxNode( node.getNodeComm() );
+		observers.add( node.getNodeComm() );
+		System.out.println("Aggiunto a " + parentNode.name + " il nodo " + node.name );
 		return true;
 	}
 	
 	// Crea un canale con il modulo RxNode di un nodo
+	@Override
 	public boolean removeChannelTo( Node node )
 	{
-		removeRxNode( node.getNodeComm() );
+		observers.remove( node.getNodeComm() );
+		System.out.println("Rimosso da " + parentNode.name + " il nodo " + node.name );
 		return true;
 	}
 	// Decido a quale componente inviare i dati
@@ -46,31 +40,34 @@ public class TxNode implements NodeComunication  {
 	{
 		for ( int i = 0; i < observers.size() ; i++ )
 		{
-			if ( observers.get(i).getDadNode().name.compareTo(name) == 0)
+			if ( observers.get(i).getParentNode().name.compareTo(name) == 0)
 				selectedChannel = i;
 		}
 	}
 	// Comunico a tutti i nodi collegati i dati da inviare
+	@Override
 	public float send() 
 	{
 		observers.get(selectedChannel).receive( this.nodeData );
 		return this.nodeData;
 	}
 	// Salvo il valore da inviare sul canale
+	@Override
 	public void set(float nodeData) 
 	{
 		this.nodeData = nodeData;		
 	}
 	
 	// Metodo non usato
+	@Override
 	public void receive(float nodeData){}
 	// Metodo non usato
+	@Override
 	public float read() {
 		return 0;
 	}
 	@Override
-	public Node getDadNode() {
-		// TODO Auto-generated method stub
-		return null;
+	public Node getParentNode() {
+		return parentNode;
 	}
 }

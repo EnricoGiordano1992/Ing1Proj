@@ -1,9 +1,8 @@
-package specializzazioni;
+package nodeComunication;
 
 import java.util.ArrayList;
 
-import nodi.Node;
-import nodi.NodeComunication;
+import node.Node;
 
 
 //si associa solo a Processor
@@ -11,52 +10,44 @@ public class TxRxNode implements NodeComunication {
 
 	private float nodeData;
 	private ArrayList<NodeComunication> observers;
-	private Node dadNode;
+	private Node parentNode;
 	private int selectedChannel = 0;
 	
 	public TxRxNode(Node dadNode ){
 		observers = new ArrayList<NodeComunication>();
-		this.dadNode = dadNode;
-	}
-	
-	// Aggiunge un NodeComunication all'arraylist dei nodi osservatori
-	public void addRxNode( NodeComunication node )
-	{
-		observers.add( node );
-	}
-	
-	// Rimuove un nodo dall'arraylist
-	public void removeRxNode( NodeComunication node )
-	{
-		observers.remove( node );
+		this.parentNode = dadNode;
 	}
 	
 	// Crea un canale con il modulo RxNode di un nodo
+	@Override
 	public boolean createChannelTo( Node node )
 	{
-		addRxNode( node.getNodeComm() );
+		observers.add( node.getNodeComm() );
+		System.out.println("Aggiunto a " + parentNode.name + " il nodo " + node.name );
 		return true;
 	}
 	
 	// Crea un canale con il modulo RxNode di un nodo
+	@Override
 	public boolean removeChannelTo( Node node )
 	{
-		removeRxNode( node.getNodeComm() );
+		observers.remove( node.getNodeComm() );
+		System.out.println("Rimosso da " + parentNode.name + " il nodo " + node.name );
 		return true;
 	}
-	
 	// Decido a quale componente inviare i dati
+	@Override
 	public void setChannel( String name )
 	{
 		for ( int i = 0; i < observers.size() ; i++ )
 		{
-			if ( observers.get(i).getDadNode().name.compareTo(name) == 0)
+			if ( observers.get(i).getParentNode().name.compareTo(name) == 0)
 				selectedChannel = i;
 		}
 	}
-	
-	
+
 	// Comunico a tutti i nodi collegati i dati da inviare
+	@Override
 	public float send() 
 	{
 		observers.get(selectedChannel).receive( this.nodeData );
@@ -64,21 +55,23 @@ public class TxRxNode implements NodeComunication {
 	}
 	
 	// Salvo il valore da inviare sul canale
+	@Override
 	public void set(float nodeData) 
 	{
 		this.nodeData = nodeData;		
 	}
-	
+	@Override
 	public void receive(float nodeData) {
 		this.nodeData = nodeData;
-		this.dadNode.update();
+		this.parentNode.update();
 	}
-
+	@Override
 	public float read() {
 		return this.nodeData;
 	}
-	public Node getDadNode()
+	@Override
+	public Node getParentNode()
 	{
-		return dadNode;
+		return parentNode;
 	}
 }

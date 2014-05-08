@@ -1,4 +1,7 @@
-package nodi;
+package node;
+
+import nodeComputation.NodeComputation;
+import nodeComunication.NodeComunication;
 
 public abstract class Node {
 	protected NodeComunication nodeComm;
@@ -42,8 +45,14 @@ public abstract class Node {
 	{
 		return nodeComm;
 	}
-	public abstract boolean createChannelTo( Node node );
-	public abstract boolean removeChannelTo( Node node );
+	public boolean createChannelTo( Node node )
+	{
+		return nodeComm.createChannelTo(node);
+	}
+	public boolean removeChannelTo( Node node )
+	{
+		return nodeComm.removeChannelTo(node);
+	}
 	public abstract void stopTimer();
 	public abstract void update();
 }

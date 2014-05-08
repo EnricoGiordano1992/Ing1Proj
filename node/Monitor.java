@@ -1,8 +1,8 @@
-package specializzazioni;
+package node;
 
+import grafica.Grafica;
 import start.Simulator;
-import nodi.Node;
-import Grafica.Grafica;
+import nodeComunication.RxNode;
 
 public class Monitor extends Node {
 
@@ -49,16 +49,6 @@ public class Monitor extends Node {
 	public float getValue()
 	{
 		 return this.nodeComm.read();
-	}
-	
-	@Override
-	public boolean createChannelTo(Node node) {
-		return false;
-	}
-
-	@Override
-	public boolean removeChannelTo(Node node) {
-		return false;
 	}
 
 	@Override

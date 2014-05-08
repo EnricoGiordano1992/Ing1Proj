@@ -1,8 +1,7 @@
-package specializzazioni;
+package nodeComunication;
 
 
-import nodi.Node;
-import nodi.NodeComunication;
+import node.Node;
 
 //riguarda i Monitor
 public class RxNode  implements NodeComunication {
@@ -24,7 +23,7 @@ public class RxNode  implements NodeComunication {
 	public float read() {
 		return this.nodeData;
 	}
-	public Node getDadNode()
+	public Node getParentNode()
 	{
 		return dadNode;
 	}
@@ -40,6 +39,23 @@ public class RxNode  implements NodeComunication {
 	public void setChannel(String string) {
 		// TODO Auto-generated method stub
 		
+	}
+	public boolean createChannelTo( Node node )
+	{
+		if ( node.getNodeComm() instanceof RxNode )
+			return false;
+		else
+			node.createChannelTo(dadNode);
+		return true;
+	}
+
+	@Override
+	public boolean removeChannelTo(Node node) {
+		if ( node.getNodeComm() instanceof RxNode)
+			return false;
+		else
+			node.removeChannelTo(dadNode);
+		return true;
 	}
 
 }
