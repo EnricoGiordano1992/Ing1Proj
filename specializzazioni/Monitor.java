@@ -27,4 +27,10 @@ public class Monitor extends Node {
 		return false;
 	}
 
+	@Override
+	public void stopTimer() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

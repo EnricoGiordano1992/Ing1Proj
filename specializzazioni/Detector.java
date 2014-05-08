@@ -38,4 +38,9 @@ public class Detector extends Node {
 		else
 			return false;	
 	}
+	@Override
+	public void stopTimer() {
+		// TODO Auto-generated method stub
+		
+	}
 }

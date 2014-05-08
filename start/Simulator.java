@@ -19,11 +19,11 @@ public class Simulator {
 		processor.createChannelTo( monitor );
 		processor.createChannelTo( monitor_ch );
 		
-		for ( int i = 0; i < 800; i++ )
+		for ( int i = 0; i < 100; i++ )
 		{
 			try{
-				int randomNum = (int)(Math.random()*500);
-				Thread.currentThread().sleep(randomNum);
+				int randomNum = (int)(Math.random()*100);
+					Thread.currentThread().sleep(randomNum);
 				}
 				catch(InterruptedException ie){
 				}
@@ -45,6 +45,8 @@ public class Simulator {
 				detector.send();
 			}
 		}
+		processor.stopTimer();
+		
 	}
 
 }

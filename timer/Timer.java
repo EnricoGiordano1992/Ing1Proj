@@ -9,6 +9,7 @@ public class Timer implements Runnable {
 	public Timer(int counter) {
 
 		this.counter = counter;
+		
 	}
 
 	

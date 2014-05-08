@@ -9,16 +9,18 @@ public class Processor extends Node {
 	private int carhour = 0;
 
 	Timer timer;
+	Thread t;
 
 	public Processor(String nodeName, boolean W) {
 		super(nodeName, W);
 		this.nodeComm = new TxRxNode(this);
 		this.timer = new Timer(1);
-		new Thread(timer).start();
+		t = new Thread ( new Timer(1) );
+		t.start();
 	}
 
 	public void display() {
-		// � uscita una macchina
+		//exit car
 		if( nodeComm.read() < 0)
 		{
 			if ( postiLiberi < 500 )
@@ -26,7 +28,7 @@ public class Processor extends Node {
 		}
 		else if ( nodeComm.read() > 0)
 		{
-			//è entrata una macchina
+			//new car
 			carhour++;
 			
 			if ( postiLiberi - 1 <= 0 )
@@ -42,6 +44,11 @@ public class Processor extends Node {
 		nodeComm.set( (float) carhour / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
 		nodeComm.send();
+		
+		System.out.println("Macchine totali \t: " + carhour );
+		System.out.println("Ora             \t: " + timer.getCounter());
+		
+		System.out.println();
 		
 	}
 	
@@ -70,5 +77,9 @@ public class Processor extends Node {
 		}
 		else
 			return false;	
+	}
+	public void stopTimer()
+	{
+		t.interrupt();
 	}
 }
