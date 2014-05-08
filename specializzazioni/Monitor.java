@@ -13,7 +13,7 @@ public class Monitor extends Node {
 	 * Mostra i dati ricevuti attraverso l'oggetto nodeComm
 	 */
 	public void display() {		
-		System.out.println( this.name + " : " + this.nodeComm.read() );
+		System.out.println( this.name + " \t: " + this.nodeComm.read() );
 	}
 
 	// Metodi non usati

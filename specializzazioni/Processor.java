@@ -1,19 +1,24 @@
 package specializzazioni;
 
 import nodi.Node;
+import timer.*;
 
 public class Processor extends Node {
 	
 	private int postiLiberi = 500;
 	private int carhour = 0;
 
+	Timer timer;
+
 	public Processor(String nodeName, boolean W) {
 		super(nodeName, W);
 		this.nodeComm = new TxRxNode(this);
+		this.timer = new Timer(1);
+		new Thread(timer).start();
 	}
 
 	public void display() {
-		// è uscita una macchina
+		// ï¿½ uscita una macchina
 		if( nodeComm.read() < 0)
 		{
 			if ( postiLiberi < 500 )
@@ -21,6 +26,9 @@ public class Processor extends Node {
 		}
 		else if ( nodeComm.read() > 0)
 		{
+			//Ã¨ entrata una macchina
+			carhour++;
+			
 			if ( postiLiberi - 1 <= 0 )
 				System.out.println("Parcheggio pieno...attendere prego");
 			else
@@ -28,10 +36,10 @@ public class Processor extends Node {
 		}
 		
 		nodeComm.set( postiLiberi );
-		nodeComm.setChannel("Display");
+		nodeComm.setChannel("Display free Park");
 		nodeComm.send();
 		
-		nodeComm.set( postiLiberi / 2 );
+		nodeComm.set( (float) carhour / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
 		nodeComm.send();
 		
@@ -39,7 +47,7 @@ public class Processor extends Node {
 	
 	/*
 	 * Crea un canale con un altro nodo
-	 * Ritorna true se è stato creato altrimenti ritorna false
+	 * Ritorna true se ï¿½ stato creato altrimenti ritorna false
 	 */
 	public boolean createChannelTo( Node node )
 	{
@@ -52,7 +60,7 @@ public class Processor extends Node {
 	}
 	/*
 	 * Rimuove un canale con un altro nodo
-	 * Ritorna true se è stato eliminato altrimenti ritorna false
+	 * Ritorna true se ï¿½ stato eliminato altrimenti ritorna false
 	 */
 	public boolean removeChannelTo( Node node )
 	{
