@@ -15,7 +15,7 @@ public class Processor extends Node {
 		super(nodeName, W);
 		this.nodeComm = new TxRxNode(this);
 		this.timer = new Timer(1);
-		t = new Thread ( new Timer(1) );
+		t = new Thread ( this.timer );
 		t.start();
 	}
 
