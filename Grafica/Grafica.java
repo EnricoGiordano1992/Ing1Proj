@@ -1,14 +1,16 @@
 package grafica;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import node.Monitor;
+import node.Node;
 
 public class Grafica extends JFrame {
 
@@ -18,12 +20,45 @@ public class Grafica extends JFrame {
 	public Grafica(){
 		
 		finestra = new JFrame("SIMULATOR");
-		finestra.setSize(500, 100);
-		finestra.setLayout(new GridLayout());
+		finestra.setSize(300, 300);
+		finestra.setLayout(new GridLayout(0, 1));
 		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		finestra.setLocationRelativeTo(null);	
 		finestra.setVisible(true);
+		
+		JPanel panelSuperiore = new JPanel( new FlowLayout() );
+		JButton buttonStart = new JButton("Start");
+		JButton buttonStop = new JButton("Stop");
+		JButton buttonRestart = new JButton("Restart");
+		
+		panelSuperiore.add(buttonStart);
+		panelSuperiore.add(buttonStop);
+		panelSuperiore.add(buttonRestart);
+		finestra.add(panelSuperiore);
+		
 	}
+	public int newDisplay(String title)
+	{
+		int i = 0;
+		JPanel panel = new JPanel( new GridLayout(1,2));
+		panel.add(new JLabel(title,JLabel.CENTER));
+		
+		labels.add(new JLabel());	
+		i = labels.size() - 1;
+		panel.add(labels.get(i));
+		finestra.add(panel);
+		
+		return i;
+	}
+	public void newDisplay( Node n )
+	{
+		int i = this.newDisplay( n.name );
+		((Monitor) n).newDisplay(this);
+		((Monitor) n).setPos(i);
+		
+	}
+	
+	
 	public int newDisplay(String title, Color background, Color foreground)
 	{
 		JPanel panel = new JPanel( new GridLayout(2,1));

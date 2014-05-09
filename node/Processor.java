@@ -51,7 +51,11 @@ public class Processor extends Node {
 		
 		nodeComm.set( carhour / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
-		nodeComm.send();		
+		nodeComm.send();
+		
+		nodeComm.set( carhour );
+		nodeComm.setChannel("Display counter");
+		nodeComm.send();
 	}
 	public void stopTimer()
 	{

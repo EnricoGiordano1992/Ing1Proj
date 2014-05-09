@@ -1,7 +1,5 @@
 package start;
 
-import java.awt.Color;
-
 import grafica.Grafica;
 import node.Detector;
 import node.Monitor;
@@ -21,27 +19,26 @@ public class Simulator {
 		Detector detector = new Detector("Detector", false);	
 		Monitor monitor = new Monitor("Display free Park", false);
 		Monitor monitor_ch = new Monitor("Display car/hour", false);
+		Monitor monitor_count = new Monitor("Display counter", true);
 		Processor processor = new Processor("Processor", false);
 		
 		wl.addNode(monitor);
 		wl.addNode(monitor_ch);
 		wl.addNode(detector);
 		wl.addNode(processor);
+		wl.addNode(monitor_count);
 		
-		monitor.setGG(g);
-		monitor_ch.setGG(g);
-		
-		monitor.setPos( g.newDisplay(monitor.name, Color.white, Color.red));
-		monitor_ch.setPos( g.newDisplay(monitor_ch.name, Color.blue, Color.ORANGE));
-			
-		for ( int i = 0; i < 800; i++ )
+		g.newDisplay(monitor);
+		g.newDisplay(monitor_count);
+		g.newDisplay(monitor_ch);
+							
+		for ( int i = 0;; i++ )
 		{
 			try{
-				int randomNum = (int)(Math.random()*500);
-				Thread.currentThread().sleep(randomNum);
+					int randomNum = (int)(Math.random()*500);
+					Thread.currentThread().sleep(randomNum);
 				}
-				catch(InterruptedException ie){
-				}
+				catch(InterruptedException ie){}
 			
 			if(i == 0){
 				detector.newCar();
@@ -57,14 +54,6 @@ public class Simulator {
 				
 				detector.car( -1 + (int)(Math.random() * 5) );
 			}
-		}
-		processor.stopTimer();
-		wl.removeNode(monitor);
-		wl.removeNode(monitor_ch);
-		wl.removeNode(processor);
-		wl.removeNode(detector);
-		
-		
+		}		
 	}
-
 }

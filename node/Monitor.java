@@ -14,7 +14,7 @@ public class Monitor extends Node {
 	}
 
 	
-	public void setGG(Grafica g)
+	public void newDisplay(Grafica g)
 	{
 		this.gg = g;
 	}
