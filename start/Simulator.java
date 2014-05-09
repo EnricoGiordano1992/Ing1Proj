@@ -25,6 +25,9 @@ public class Simulator {
 		wl.addNode(monitor_ch);
 		wl.addNode(detector);
 		wl.addNode(processor);
+		
+		monitor.setGG(g);
+		monitor_ch.setGG(g);
 			
 		for ( int i = 0; i < 800; i++ )
 		{

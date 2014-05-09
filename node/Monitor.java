@@ -1,7 +1,6 @@
 package node;
 
 import grafica.Grafica;
-import start.Simulator;
 import nodeComunication.RxNode;
 
 public class Monitor extends Node {
@@ -26,15 +25,14 @@ public class Monitor extends Node {
 		
 		if(this.name.compareTo("Display free Park") == 0)
 		{
-			Simulator.g.setLabel1(getName());
-			Simulator.g.setLabel3("" + (int) getValue());
+			gg.setLabel1(getName());
+			gg.setLabel3("" + (int) getValue());
 		}
 		
 		else if(this.name.compareTo("Display car/hour") == 0)
 		{
-			Simulator.g.setLabel2(getName());
-			Simulator.g.setLabel4("" + getValue());
-
+			gg.setLabel2(getName());
+			gg.setLabel4("" + getValue());
 		}
 	}
 

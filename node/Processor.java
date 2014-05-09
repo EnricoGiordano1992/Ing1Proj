@@ -49,7 +49,7 @@ public class Processor extends Node {
 		nodeComm.setChannel("Display free Park");
 		nodeComm.send();
 		
-		nodeComm.set( (float) carhour / timer.getCounter() );
+		nodeComm.set( carhour / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
 		nodeComm.send();		
 	}
