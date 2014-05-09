@@ -26,7 +26,7 @@ public class Simulator {
 		wl.addNode(detector);
 		wl.addNode(processor);
 			
-		for ( int i = 0; i < 10; i++ )
+		for ( int i = 0; i < 800; i++ )
 		{
 			try{
 				int randomNum = (int)(Math.random()*500);
