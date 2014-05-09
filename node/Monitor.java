@@ -6,6 +6,7 @@ import nodeComunication.RxNode;
 public class Monitor extends Node {
 
 	Grafica gg;
+	private int pos;
 	
 	public Monitor(String nodeName, boolean W) {
 		super(nodeName, W);
@@ -17,23 +18,15 @@ public class Monitor extends Node {
 	{
 		this.gg = g;
 	}
+	public void setPos( int pos ){
+		this.pos = pos;
+	}
 	
 	/*
 	 * Mostra i dati ricevuti attraverso l'oggetto nodeComm
 	 */
 	public void display() {
-		
-		if(this.name.compareTo("Display free Park") == 0)
-		{
-			gg.setLabel1(getName());
-			gg.setLabel3("" + (int) getValue());
-		}
-		
-		else if(this.name.compareTo("Display car/hour") == 0)
-		{
-			gg.setLabel2(getName());
-			gg.setLabel4("" + getValue());
-		}
+		gg.setLabel(""+ getValue(), pos);
 	}
 
 	// Metodi non usati

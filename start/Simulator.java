@@ -1,5 +1,7 @@
 package start;
 
+import java.awt.Color;
+
 import grafica.Grafica;
 import node.Detector;
 import node.Monitor;
@@ -28,6 +30,9 @@ public class Simulator {
 		
 		monitor.setGG(g);
 		monitor_ch.setGG(g);
+		
+		monitor.setPos( g.newDisplay(monitor.name, Color.white, Color.red));
+		monitor_ch.setPos( g.newDisplay(monitor_ch.name, Color.blue, Color.ORANGE));
 			
 		for ( int i = 0; i < 800; i++ )
 		{
@@ -52,8 +57,6 @@ public class Simulator {
 				
 				detector.car( -1 + (int)(Math.random() * 5) );
 			}
-			
-			
 		}
 		processor.stopTimer();
 		wl.removeNode(monitor);
