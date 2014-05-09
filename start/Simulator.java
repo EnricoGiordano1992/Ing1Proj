@@ -1,5 +1,7 @@
 package start;
 
+import java.awt.Color;
+
 import grafica.Grafica;
 import node.Detector;
 import node.Monitor;
@@ -25,7 +27,12 @@ public class Simulator {
 		wl.addNode(monitor_ch);
 		wl.addNode(detector);
 		wl.addNode(processor);
-			
+		
+		
+		monitor.setMyGID(g.newDisplay(Color.blue, Color.white));
+		monitor_ch.setMyGID(g.newDisplay(Color.red, Color.white));
+		
+		
 		for ( int i = 0; i < 800; i++ )
 		{
 			try{

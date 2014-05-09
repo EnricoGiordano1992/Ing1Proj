@@ -7,12 +7,19 @@ import nodeComunication.RxNode;
 public class Monitor extends Node {
 
 	Grafica gg;
+	int myGID;
 	
 	public Monitor(String nodeName, boolean W) {
 		super(nodeName, W);
 		this.nodeComm = new RxNode(this);
+		this.myGID = 0;
 	}
 
+	
+	public void setMyGID(int GID) {
+		
+		this.myGID = GID;
+	}
 	
 	public void setGG(Grafica g)
 	{
@@ -24,18 +31,8 @@ public class Monitor extends Node {
 	 */
 	public void display() {
 		
-		if(this.name.compareTo("Display free Park") == 0)
-		{
-			Simulator.g.setLabel1(getName());
-			Simulator.g.setLabel3("" + (int) getValue());
-		}
-		
-		else if(this.name.compareTo("Display car/hour") == 0)
-		{
-			Simulator.g.setLabel2(getName());
-			Simulator.g.setLabel4("" + getValue());
-
-		}
+			Simulator.g.writeText(myGID-1, getName());
+			Simulator.g.writeText(myGID, "" + (int) getValue());
 	}
 
 	// Metodi non usati
