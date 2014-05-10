@@ -31,29 +31,29 @@ public class Processor extends Node {
 		//exit car
 		if( nodeComm.read() < 0 )
 		{
-			if ( postiLiberi < 500 )
-				postiLiberi = add.operation(postiLiberi, 1);
+			if ( getPostiLiberi() < 500 )
+				setPostiLiberi(add.operation(getPostiLiberi(), 1));
 		}
 		else if ( nodeComm.read() > 0 )
 		{
 			//new car
-			carhour = add.operation(carhour, 1);
+			setCarhour(add.operation(getCarhour(), 1));
 			
-			if ( sub.operation(postiLiberi, 1) <= 0 )
+			if ( sub.operation(getPostiLiberi(), 1) <= 0 )
 				System.out.println("Parcheggio pieno...attendere prego");
 			else
-				postiLiberi = sub.operation(postiLiberi, 1);
+				setPostiLiberi(sub.operation(getPostiLiberi(), 1));
 		}
 		
-		nodeComm.set( postiLiberi );
+		nodeComm.set( getPostiLiberi() );
 		nodeComm.setChannel("Display free Park");
 		nodeComm.send();
 		
-		nodeComm.set( carhour / timer.getCounter() );
+		nodeComm.set( getCarhour() / timer.getCounter() );
 		nodeComm.setChannel("Display car/hour");
 		nodeComm.send();
 		
-		nodeComm.set( carhour );
+		nodeComm.set( getCarhour() );
 		nodeComm.setChannel("Display counter");
 		nodeComm.send();
 	}
@@ -65,5 +65,21 @@ public class Processor extends Node {
 	@Override
 	public void update() {
 		display();		
+	}
+
+	public float getPostiLiberi() {
+		return postiLiberi;
+	}
+
+	public void setPostiLiberi(float postiLiberi) {
+		this.postiLiberi = postiLiberi;
+	}
+
+	public float getCarhour() {
+		return carhour;
+	}
+
+	public void setCarhour(float carhour) {
+		this.carhour = carhour;
 	}
 }
