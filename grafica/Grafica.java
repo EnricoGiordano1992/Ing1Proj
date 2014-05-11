@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import start.Simulator;
 import timer.Timer;
@@ -31,6 +32,8 @@ public class Grafica extends JFrame implements ActionListener {
 	JButton buttonStop;
 	JButton buttonRestart;
 	
+	boolean reset_flag;
+	
 	public Grafica(){
 
 		finestra = new JFrame("SIMULATOR");
@@ -40,10 +43,15 @@ public class Grafica extends JFrame implements ActionListener {
 		finestra.setLocationRelativeTo(null);	
 		
 		JPanel panelSuperiore = new JPanel( new FlowLayout() );
-	    
+	    panelSuperiore.setBorder(BorderFactory.createEtchedBorder());
+		
 		buttonStart = new JButton("Start");
 		buttonStop = new JButton("Stop");
 		buttonRestart = new JButton("Restart");
+		
+		buttonStart.setFocusPainted(false);
+		buttonStop.setFocusPainted(false);
+		buttonRestart.setFocusPainted(false);
 		
 		panelSuperiore.add(buttonStart);
 		panelSuperiore.add(buttonStop);
@@ -70,17 +78,26 @@ public class Grafica extends JFrame implements ActionListener {
 
 		}
 		else if (src.equals(buttonRestart)){
-			Timer.resetTime();
+			Simulator.setFlag(true, "restart");
 		}
 			
 	}
 	
+	public boolean isReset_flag() {
+		return reset_flag;
+	}
+
+	public void setReset_flag(boolean reset_flag) {
+		this.reset_flag = reset_flag;
+	}
+
 	public int newDisplay(String title)
 	{
 		int i = 0;
 		JPanel panel = new JPanel( new GridLayout(1,2));
 		panel.add(new JLabel(title,JLabel.CENTER));		
-		labels.add(new JLabel());	
+		panel.setBorder(BorderFactory.createBevelBorder(0));
+		labels.add(new JLabel());
 		i = labels.size() - 1;
 		panel.add(labels.get(i));
 		finestra.add(panel);

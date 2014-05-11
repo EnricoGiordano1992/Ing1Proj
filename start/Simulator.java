@@ -32,7 +32,6 @@ public class Simulator {
 		Monitor monitor = new Monitor("Display free Park", false);
 		Monitor monitor_ch = new Monitor("Display car/hour", false);
 		Monitor monitor_count = new Monitor("Display counter", true);
-		Monitor monitor_time = new Monitor("Time", true);
 		Processor processor = new Processor("Processor", false);
 		
 		wl.addNode(monitor);
@@ -45,16 +44,15 @@ public class Simulator {
 		g.newDisplay(monitor);
 		g.newDisplay(monitor_count);
 		g.newDisplay(monitor_ch);
-		g.newDisplay(monitor_time);
 							
 		for ( int i = 0;; i++ )
 		{
+				
 			if(start_flag)
 			{
 				try{
 						int randomNum = (int)(Math.random()*500);
 						Thread.currentThread().sleep(randomNum);
-						g.setLabel(""+Timer.getCounter(), 3);
 					}
 					catch(InterruptedException ie){}
 				
@@ -90,9 +88,7 @@ public class Simulator {
 		}
 		else if (name.equals("restart"))
 		{
-			restart_flag = flag;
-			processor.setPostiLiberi(500);
-			processor.setCarhour(0);
+
 		}
 	}
 	

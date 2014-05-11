@@ -5,13 +5,13 @@ import start.Simulator;
 
 public class Timer implements Runnable {
 
-	private static int counter;
+	private int counter;
 	
 	public Timer(int val) {
 	counter = val;
 	}
 
-	public static int getCounter() {
+	public int getCounter() {
 		
 		return counter;
 	}
@@ -29,7 +29,7 @@ public class Timer implements Runnable {
 		counter++;
 	}
 	
-	public static void resetTime(){
+	public void resetTime(){
 		
 		counter = 1;
 	}
