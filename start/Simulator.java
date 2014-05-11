@@ -16,7 +16,7 @@ public class Simulator {
 
 	public static Grafica g;
 
-	static boolean start_flag = false;
+	static boolean start_flag = true;
 	static boolean restart_flag = false;
 
 	static Processor processor; 
@@ -82,7 +82,7 @@ public class Simulator {
 	
 	public static void setFlag(boolean flag, String name)
 	{
-		if(name.equals("start"))
+		if(name.compareTo("start") == 0)
 		{
 			start_flag = flag;
 		}
@@ -94,7 +94,7 @@ public class Simulator {
 	
 	public static boolean getFlag(String name)
 	{
-		if(name.equals("start"))
+		if(name.compareTo("start") == 0)
 			return start_flag;
 		else
 			return restart_flag;
