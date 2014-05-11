@@ -1,54 +1,39 @@
 package timer;
-import grafica.Grafica;
-import node.Monitor;
-import start.Simulator;
 
 public class Timer implements Runnable {
 
 	private int counter;
-	
-	public Timer(int val) {
-	counter = val;
+
+	public Timer(int counter) {
+		this.counter = counter;
 	}
 
-	public int getCounter() {
-		
-		return counter;
+	public int getCounter() {	
+		return this.counter;
 	}
 
 
 
-	public void setCounter(int val) {
-		counter = val;
+	public void setCounter(int counter) {
+		this.counter = counter;
 	}
 
 
 	
 	public void updateTime() {
-
-		counter++;
-	}
-	
-	public void resetTime(){
-		
-		counter = 1;
+		//get time from Calendar Class
+		this.counter++;
 	}
 	
 	//simula il tempo per il sistema
 	@Override
 	public void run() {
-
 		try{
-
 			while(true)
 			{
 				Thread.currentThread().sleep(1000);
-				if(Simulator.getFlag("start"))
-					updateTime();
-				if(Simulator.getFlag("restart"))
-					resetTime();
+				updateTime();
 			}
-			
 		}
 		catch (Exception e) {
 		}
