@@ -8,8 +8,7 @@ public class Timer implements Runnable {
 		this.counter = counter;
 	}
 
-	public int getCounter() {
-		
+	public int getCounter() {	
 		return this.counter;
 	}
 
@@ -22,7 +21,6 @@ public class Timer implements Runnable {
 
 	
 	public void updateTime() {
-
 		//get time from Calendar Class
 		this.counter++;
 	}
@@ -30,15 +28,12 @@ public class Timer implements Runnable {
 	//simula il tempo per il sistema
 	@Override
 	public void run() {
-
 		try{
-
 			while(true)
 			{
 				Thread.currentThread().sleep(1000);
 				updateTime();
 			}
-			
 		}
 		catch (Exception e) {
 		}
