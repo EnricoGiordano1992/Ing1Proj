@@ -91,9 +91,8 @@ public class Simulator {
 		else if (name.equals("restart"))
 		{
 			restart_flag = flag;
-			processor.setPostiLiberi(0);
-			processor.setCarhour(500);
-			g.repaint();
+			processor.setPostiLiberi(500);
+			processor.setCarhour(0);
 		}
 	}
 	

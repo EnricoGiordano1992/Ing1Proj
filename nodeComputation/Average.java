@@ -5,7 +5,11 @@ public class Average implements NodeComputation {
 
 	@Override
 	public float operation(float nodeData, float threshold) {
-		// TODO Auto-generated method stub
-		return 0;
+
+//		nodedata == somma dei valori, threshold == cardinalità dei valori
+		Divide div = new Divide();
+		
+		return div.operation(nodeData, threshold);
+	
 	}
 }
