@@ -1,9 +1,6 @@
 package start;
 
 import grafica.Grafica;
-
-import java.awt.Color;
-
 import node.Detector;
 import node.Monitor;
 import node.Processor;
