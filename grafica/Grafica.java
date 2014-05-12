@@ -37,27 +37,57 @@ public class Grafica extends JFrame implements ActionListener {
 	public Grafica(){
 
 		finestra = new JFrame("SIMULATOR");
-		finestra.setSize(300, 300);
+		finestra.setSize(300, 400);
 		finestra.setLayout(new GridLayout(0, 1));
 		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		finestra.setLocationRelativeTo(null);	
 		
-		JPanel panelSuperiore = new JPanel( new FlowLayout() );
+		
+		JPanel panelSuperiore = new JPanel(new FlowLayout());
 	    panelSuperiore.setBorder(BorderFactory.createEtchedBorder());
+
+		JPanel panelSottoSuperiore = new JPanel( new FlowLayout() );
+	    panelSottoSuperiore.setBorder(BorderFactory.createEtchedBorder());
 		
 		buttonStart = new JButton("Start");
 		buttonStop = new JButton("Stop");
 		buttonRestart = new JButton("Restart");
 		
 		buttonStart.setFocusPainted(false);
+		buttonStart.setBackground(Color.lightGray);
+		buttonStart.setCursor(new Cursor((int)(Math.random()*10)));
 		buttonStop.setFocusPainted(false);
-		buttonRestart.setFocusPainted(false);
-		
-		panelSuperiore.add(buttonStart);
-		panelSuperiore.add(buttonStop);
-		panelSuperiore.add(buttonRestart);
-		finestra.add(panelSuperiore);
+		buttonStop.setBackground(Color.lightGray);
+		buttonStop.setCursor(new Cursor((int)(Math.random()*10)));
 
+		buttonRestart.setFocusPainted(false);
+		buttonRestart.setBackground(Color.lightGray);
+		buttonRestart.setCursor(new Cursor((int)(Math.random()*10)));
+
+		
+		JLabel txt = new JLabel();
+		txt.setText("SIMULATION OF CAR PARKING");
+		txt.setForeground(Color.red);
+		
+		JLabel sttxt = new JLabel();
+		sttxt.setText("assuming that 1 h ~ 500 ms");
+
+		JLabel ststtxt = new JLabel();
+		ststtxt.setText("click \"start\" button to start simulation");
+		
+		
+		panelSuperiore.add(txt);
+		panelSuperiore.add(sttxt);
+		panelSuperiore.add(ststtxt);
+		
+		panelSottoSuperiore.add(buttonStart);
+		panelSottoSuperiore.add(buttonStop);
+		panelSottoSuperiore.add(buttonRestart);
+		
+		
+		finestra.add(panelSuperiore);
+		finestra.add(panelSottoSuperiore);
+		
 		buttonStart.addActionListener(this);
 		buttonStop.addActionListener(this);
 		buttonRestart.addActionListener(this);

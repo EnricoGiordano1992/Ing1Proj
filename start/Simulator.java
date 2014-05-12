@@ -16,9 +16,9 @@ public class Simulator {
 
 	public static Grafica g;
 
-	static boolean start_flag = true;
+	static boolean start_flag = false;
 	static boolean restart_flag = false;
-
+	
 	static Processor processor; 
 	
 	public static void main(String[] args) {
@@ -45,9 +45,17 @@ public class Simulator {
 		g.newDisplay(monitor_count);
 		g.newDisplay(monitor_ch);
 							
+		
 		for ( int i = 0;; i++ )
 		{
-				
+			
+			if(restart_flag)
+			{
+				processor.reset();
+				restart_flag = false;
+				g.repaint();
+			}	
+
 			if(start_flag)
 			{
 				try{
@@ -56,24 +64,34 @@ public class Simulator {
 					}
 					catch(InterruptedException ie){}
 				
-				if(i == 0){
-					detector.newCar();
-				}
-				if(i % 5 != 0)
-				{
-					//simulo il passaggio di un Gooby
-					detector.exitCar();
-				}
-				
-				else
-				{
-					
-					detector.car( -1 + (int)(Math.random() * 5) );
-				}
-			}
-			else
-			{
-				
+//				if(i == 0){
+//					detector.newCar();
+//				}
+//				if(i % 5 == 0)
+//				{
+//					//simulo il passaggio di un Gooby
+//					detector.exitCar();
+//				}
+//				
+//				else if(i % 4 == 0)
+//					detector.newCar();
+//				
+//				else
+//				{
+//					
+//					detector.car( -1 + (int)(Math.random() * 3) );
+//				}
+
+				detector.newCar();
+				detector.car( -3 + (int)(Math.random() * 6) );
+
+				detector.newCar();
+				detector.car( -3 + (int)(Math.random() * 6) );
+
+				detector.exitCar();
+				detector.car( -3 + (int)(Math.random() * 6) );
+
+
 			}
 			
 		}		
@@ -86,9 +104,9 @@ public class Simulator {
 		{
 			start_flag = flag;
 		}
-		else if (name.equals("restart"))
+		else if (name.compareTo("restart") == 0)
 		{
-
+			restart_flag = true;
 		}
 	}
 	
