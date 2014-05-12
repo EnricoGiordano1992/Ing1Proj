@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -55,14 +56,10 @@ public class Grafica extends JFrame implements ActionListener {
 		
 		buttonStart.setFocusPainted(false);
 		buttonStart.setBackground(Color.lightGray);
-		buttonStart.setCursor(new Cursor((int)(Math.random()*10)));
 		buttonStop.setFocusPainted(false);
 		buttonStop.setBackground(Color.lightGray);
-		buttonStop.setCursor(new Cursor((int)(Math.random()*10)));
-
 		buttonRestart.setFocusPainted(false);
 		buttonRestart.setBackground(Color.lightGray);
-		buttonRestart.setCursor(new Cursor((int)(Math.random()*10)));
 
 		
 		JLabel txt = new JLabel();
@@ -98,17 +95,60 @@ public class Grafica extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent evt){
 		
+		
+		Random rand = new Random();
+		// Java 'Color' class takes 3 floats, from 0 to 1.
+		float r = rand.nextFloat();
+		float g = rand.nextFloat();
+		float b = rand.nextFloat();
+		
+//		Color randomColor = new Color(r, g, b);
+		
 		Object src = evt.getSource();
+		
 
 		if (src.equals(buttonStart)){
 			Simulator.setFlag(true, "start");
+			buttonStart.setBackground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
+			buttonStart.setForeground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
+			buttonStop.setBackground(Color.lightGray);
+			buttonStop.setForeground(Color.black);
+			buttonRestart.setBackground(Color.lightGray);
+			buttonRestart.setForeground(Color.black);
+
+			buttonStop.setCursor(new Cursor((int)(Math.random()*14)));
+			buttonStart.setCursor(new Cursor((int)(Math.random()*14)));
+			buttonRestart.setCursor(new Cursor((int)(Math.random()*14)));
+
+			
 		}
 		else if (src.equals(buttonStop)){
 			Simulator.setFlag(false, "start");
+			buttonStop.setBackground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
+			buttonStop.setForeground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
+			buttonRestart.setBackground(Color.lightGray);
+			buttonRestart.setForeground(Color.black);
+			buttonStart.setBackground(Color.lightGray);
+			buttonStart.setForeground(Color.black);
+
+			buttonStop.setCursor(new Cursor((int)(Math.random()*14)));
+			buttonStart.setCursor(new Cursor((int)(Math.random()*14)));
+			buttonRestart.setCursor(new Cursor((int)(Math.random()*14)));
 
 		}
 		else if (src.equals(buttonRestart)){
 			Simulator.setFlag(true, "restart");
+			buttonRestart.setBackground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
+			buttonRestart.setForeground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
+			buttonStop.setBackground(Color.lightGray);
+			buttonStop.setForeground(Color.black);
+			buttonStart.setBackground(Color.lightGray);
+			buttonStart.setForeground(Color.black);
+
+			buttonStop.setCursor(new Cursor((int)(Math.random()*14)));
+			buttonStart.setCursor(new Cursor((int)(Math.random()*14)));
+			buttonRestart.setCursor(new Cursor((int)(Math.random()*14)));
+
 		}
 			
 	}
