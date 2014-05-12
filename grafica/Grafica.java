@@ -35,6 +35,9 @@ public class Grafica extends JFrame implements ActionListener {
 	
 	boolean reset_flag;
 	
+	
+	boolean lettore_cd = false;
+	
 	public Grafica(){
 
 		finestra = new JFrame("SIMULATOR");
@@ -63,7 +66,7 @@ public class Grafica extends JFrame implements ActionListener {
 
 		
 		JLabel txt = new JLabel();
-		txt.setText("SIMULATION OF CAR PARKING");
+		txt.setText("CAR PARKING SIMULATOR");
 		txt.setForeground(Color.red);
 		
 		JLabel sttxt = new JLabel();
@@ -102,11 +105,9 @@ public class Grafica extends JFrame implements ActionListener {
 		float g = rand.nextFloat();
 		float b = rand.nextFloat();
 		
-//		Color randomColor = new Color(r, g, b);
-		
 		Object src = evt.getSource();
 		
-
+		//buttonStart pressed
 		if (src.equals(buttonStart)){
 			Simulator.setFlag(true, "start");
 			buttonStart.setBackground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
@@ -120,8 +121,20 @@ public class Grafica extends JFrame implements ActionListener {
 			buttonStart.setCursor(new Cursor((int)(Math.random()*14)));
 			buttonRestart.setCursor(new Cursor((int)(Math.random()*14)));
 
+			try {
+				if(lettore_cd == false)
+				Runtime.getRuntime().exec("eject");
+				else
+					Runtime.getRuntime().exec("eject -t");
+				
+				lettore_cd = !lettore_cd;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
+		//buttonStop pressed
 		else if (src.equals(buttonStop)){
 			Simulator.setFlag(false, "start");
 			buttonStop.setBackground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
@@ -135,7 +148,21 @@ public class Grafica extends JFrame implements ActionListener {
 			buttonStart.setCursor(new Cursor((int)(Math.random()*14)));
 			buttonRestart.setCursor(new Cursor((int)(Math.random()*14)));
 
+			
+			try {
+				if(lettore_cd == false)
+				Runtime.getRuntime().exec("eject");
+				else
+					Runtime.getRuntime().exec("eject -t");
+				
+				lettore_cd = !lettore_cd;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
+		//buttonRestart pressed
 		else if (src.equals(buttonRestart)){
 			Simulator.setFlag(true, "restart");
 			buttonRestart.setBackground(new Color(r = rand.nextFloat(), g = rand.nextFloat(), b = rand.nextFloat()));
@@ -149,6 +176,19 @@ public class Grafica extends JFrame implements ActionListener {
 			buttonStart.setCursor(new Cursor((int)(Math.random()*14)));
 			buttonRestart.setCursor(new Cursor((int)(Math.random()*14)));
 
+			
+			try {
+				if(lettore_cd == false)
+				Runtime.getRuntime().exec("eject");
+				else
+					Runtime.getRuntime().exec("eject -t");
+				
+				lettore_cd = !lettore_cd;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 			
 	}
@@ -161,6 +201,7 @@ public class Grafica extends JFrame implements ActionListener {
 		this.reset_flag = reset_flag;
 	}
 
+	//add new display to the device
 	public int newDisplay(String title)
 	{
 		int i = 0;
@@ -174,6 +215,8 @@ public class Grafica extends JFrame implements ActionListener {
 		
 		return i;
 	}
+	
+	//add new display to the device
 	public void newDisplay( Node n )
 	{
 		int i = this.newDisplay( n.name );
@@ -182,7 +225,7 @@ public class Grafica extends JFrame implements ActionListener {
 		
 	}
 	
-	
+	//add new display to the device
 	public int newDisplay(String title, Color background, Color foreground)
 	{
 		JPanel panel = new JPanel( new GridLayout(2,1));
@@ -208,6 +251,8 @@ public class Grafica extends JFrame implements ActionListener {
 		
 		return i;
 	}
+	
+	//change text "string" to label "position"
 	public void setLabel( String string, int position )
 	{
 		labels.get(position).setText(string);

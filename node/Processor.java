@@ -32,10 +32,10 @@ public class Processor extends Node {
 	}
 
 	public void display() {
-		//exit car
 		
 		switch ((int) cmp.operation(nodeComm.read(), 0))
 		{
+		//exit car
 		case -1:
 				if(cmp.operation(getPostiLiberi(), 500) == -1 )
 					setPostiLiberi(add.operation(getPostiLiberi(), 1));
@@ -45,8 +45,8 @@ public class Processor extends Node {
 				
 			break;
 			
+		//enter car
 		case 1:
-			//new car
 			if(!(cmp.operation(getPostiLiberi(), 0) == 0))
 				setCarhour(add.operation(getCarhour(), 1));
 			

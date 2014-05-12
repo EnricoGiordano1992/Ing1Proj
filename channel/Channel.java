@@ -15,15 +15,15 @@ public abstract class Channel {
 	public abstract void display();
 
 	public void addNode(Node n) {
-		// creo i collegamenti con i nodi connessi alla rete
+		// create a link in a grid
 		for ( Node nd : nodeList ){
 			nd.createChannelTo(n);
 		}
-		// aggiungo il nodo alla lista
+		// add node to the list
 		nodeList.add(n);
 	}
 	public void removeNode(Node n) {
-		// rimuovo i collegamenti con i nodi connessi alla rete
+		// remove a link between node in the grid
 		nodeList.remove(n);
 		for ( Node nd : nodeList ){
 			nd.removeChannelTo(n);

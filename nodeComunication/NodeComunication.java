@@ -6,10 +6,13 @@ public interface NodeComunication {
 
 	void receive(float nodeData);
 
+	//read message
 	float read();
 
+	//send message
 	float send();
 
+	//set message
 	void set(float nodeData);
 	
 	// Metodi aggiunti da Giovanni
