@@ -12,10 +12,6 @@ open terminal, then execute this command in this path:
 chmod u=rwx exec.sh
 ./exec.sh
 
-or simply:
-
-java -jar proj.jar
-
 When the gui starts, click start button to start simulation, stop button to stop simulation and restart to reset the simulation.
 In the window is shown three rows: the first row shows free parks, the second row shows traffic (how many car enter/exit) and third row shows average of cars/hours.
 

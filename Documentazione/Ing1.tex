@@ -37,25 +37,23 @@
 
 \part{Introduction}
 
-This report explain how a car parking system was implemented by the project group. This project was implemented in java language and the nodes of the system was converted into class, according to object oriented programming. 
+This report explain the implementation of a car parking system. We have implemented this project in Java language converting the nodes of the system into class, according to object oriented programming.
 
-~
+Every entity is interpreted as a node of a grid that comunicate to another node with a channel; it use a particular node, Tx or Rx, which send or receive messages. This remaind a particular design pattern called ''observer pattern``: it is a software design pattern in which an object, the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods. It is mainly used to implement distributed event handling systems.
 
-Every entity was interpreted as a node of a grid that comunicate to another node with a channel; it use a particular node, Tx or Rx, wherewith send or receive messages. This remaind a particular design pattern called ''observer pattern``: it is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods. It is mainly used to implement distributed event handling systems.
-
-Every entity was a generalization of an abstract class called Node; infact an entity of system is a specialization of Node class. This fact remaind an embedded system which is composed by a simple hardware objects that comunicate each other and send or receive messagges. 
+Every entity is a generalization of an abstract class called Node; infact an entity of system is a specialization of Node class. This fact remaind an embedded system which is composed by a simple hardware objects that comunicate each other and send or receive messagges.
 
 \newpage
 \part{General pattern}
 
-Now it's explain an example of system behaviour: when a car arrive or exit to the park, the node ''car detector`` send a message to the node ''process unit``, that store the request (for future use) and send to the monitor the average number of car/hour and the number of free parking places. 
+Now we explain an example of system behaviour: when a car arrive or exit to the park, the node ''car detector`` send a message to the node ''process unit``, that store the request (for future use) and send to the monitor the average number of car/hour and the number of free parking places.
 
-According to observer pattern, the subject (Sensor) notify the observer (Process Unit) that a new message is pending, so observer (Process Unit) receive istantly the message. After the computation, the Process Unit send in the same way the messages to the different displays.
+According to observer pattern, the subject (Sensor) notify the observer (Process Unit) that a new message is pending, so the observer (Process Unit) receive istantly the message. After the computation, in the same the Process Unit send messages to the different displays.
 The observer pattern is used only in the comunication nodes.
 
-So the sender node, when have to send a message, must call the receive method of the receiver node; in this way it was implemented an observer pattern, an optimization of a real system. In fact, in a real context, the receiver must poll on the receive path (or hardware) or must have an interrupt routine that manage the receiving process; in this system, the sender simply call a receive method of the receiver.
+So the sender node, when have to send a message, must call the receive method of the receiver node; in this way it's implemented an observer pattern, which is an optimization of a real system. In fact, in a real context, the receiver must poll on the receive path (or hardware) or must have an interrupt routine that manage the receiving process; in this system, the sender calls a receive method of the receiver.
 
-In the picture, the arrows show how a class (or a method) call other class. 
+In the picture, the arrows show how a class (or a method) call other class (a class is called to another class).
 
     \begin{center}
 
@@ -65,21 +63,21 @@ In the picture, the arrows show how a class (or a method) call other class.
     \end{center}
 
 
-There is a different type of node in this project, in particular:
+The ``abstract`` class Node is implemented in the following classes
 
 \begin{itemize}[noitemsep,topsep=20pt,parsep=10pt,partopsep=20pt]
 
-\item Detector: a sensor that controls car traffic (entering or exiting car); 
-\item Processor: a processing unit that calculate average number of cars/hour anche number of free parking places;
+\item Detector: a sensor that controls car traffic (entering or exiting car);
+\item Processor: a processing unit that calculate average number of cars/hour and number of free parking places;
 \item Monitor: a display that shows the results of processing unit.
 
 \end{itemize}
 
-The channel comunication was implemented by ''Channel`` class, that create a link in a comunication grid. There are 2 tipes of Channel: WireChannel or WirelessChannel (in this project there is no difference).
+The channel comunication is implemented by ''Channel`` class, that create a link in a comunication grid. There are 2 types of Channel: WireChannel and WirelessChannel (in this project there is no difference).
 
-The Processor computation is done by a subnode called nodeComputation, that implement basic operation (sum, min, ecc...). A complex computation is formed by a combination of basic operation, like an ALU of a real processor.
+All the operations in the Processor are implemented by other classes that implement basic operation (sum, min, ecc...). These classes extend NodeComputation interface. A complex computation is formed by a combination of basic operation, like an ALU in a real processor.
 
-The comunication is done by a subnode called nodeCommunication, that implement:
+The NodeCommunication interface manages the exchange of messages between nodes and is implemented in the following classes:
 
 \begin{itemize}[noitemsep,topsep=20pt,parsep=10pt,partopsep=20pt]
 
@@ -91,20 +89,16 @@ The comunication is done by a subnode called nodeCommunication, that implement:
 
 \end{itemize}
 
-It was used a Strategy pattern for implementation of nodes, because there is an ``abstract'' class and other classes is an implementation of this class. Every class inheredits methods and attribute from abstract node and implements it. 
-
-When a node send a message, it set the receiver channel and send to it using the right channel.
-
 \newpage
 \part{Simulation}
 
-In the main class is created the detector, the processing unit and 3 monitor: a display for average number of car/hour, a display for number of free parking places and an (not required) display for car traffic.
+The detector, the processing unit and 3 monitors are created in the main class. These monitors show a display for average number of car/hour, a display for number of free parking places and a (not required) display for car traffic.
 
-The node is linked in the wireless grid and, after that, they can comunicate. A realtime clock in the processing unit simulate the time (for the average cars/hours) implemented with a thread that every second increase a counter. 
+The nodes are linked in the wireless grid so they can comunicate one another. A realtime clock in the processing unit simulates the time (for the average cars/hours) implemented with a thread that increase a counter every second.
 
 \section*{GUI}
 
-It was implemented a simple user interface that simulate a scenario of the system. There are:
+In according to show a simulation of the system we have implemented a simple user interface. There are:
 
 \begin{itemize}
 
@@ -113,7 +107,7 @@ It was implemented a simple user interface that simulate a scenario of the syste
 
 \end{itemize}
 
-With the control button, the user can control the simulation: ``start'' button starts the simulation, ``stop'' button stops the simulation and ``restart'' button restarts the simulation.
+The user can control the simulation with some control buttons: the ``start'' button starts the simulation, the ``stop'' button stops the simulation and the ``restart'' button restarts the simulation.
 
     \begin{center}
 
@@ -122,9 +116,7 @@ With the control button, the user can control the simulation: ``start'' button s
 
     \end{center}
 
-Every node of the system is brother to each other node and can comunicate using reference of the node class, known by the superclass.
-
-
+ 
 \newpage
 \part{Questions}
 
@@ -138,9 +130,9 @@ The second figure represents an another interface called ``nodeComputation'' and
 
 ~
 
-The third figure represents an abstract class called ``Node'' and three other class (Detector, Processor, Monitor) that inherited the superclass methods (``Node''). The abstract class must have some implemented method and the son classes have the same method and the same attribute. If a son classes have a different implementation of a method, it must override it.  
+The third figure represents an abstract class called ``Node'' and three other class (Detector, Processor, Monitor) that inherited the superclass methods (``Node''). The abstract class must have some implemented method and the son classes have the same method and the same attribute. If a son classes have a different implementation of a method, it must override it.
 
-An abstract type may provide no implementation, or an incomplete implementation. Abstract types will have one or more implementations provided separately, like in this case. 
+An abstract type may provide no implementation, or an incomplete implementation. Abstract types will have one or more implementations provided separately, like in this case.
 
 ~
 
@@ -157,7 +149,9 @@ So this is a Strategy Pattern. The strategy pattern is a software design pattern
     \end{center}
 
 
-The first class, Simulator, can instantiate the other class of the system. Every node is chained to the other by a wireless grid and can comunicate thanks to the observer pattern, using a ``subnode'' called Tx (for trasmission), Rx (for receiving) and TxRx (both). There is a graphical interface that is accessible by all classes. The ``actors'' of the system (Detector, Monitor, Detector, Processor) are an implementation of Node class.
+The first class, Simulator, can instantiate the other class of the system. Every node is chained to the other by a wireless grid and can comunicate thanks to the observer pattern, using a ``subnode'' called Tx (for trasmission), Rx (for receiving) and TxRx (both). The ``actors'' of the system (Detector, Monitor, Detector, Processor) are an implementation of Node class.
+
+For node implementation, it was used a Strategy pattern, because there is a superclass called Node and other node classes are an implementation of Node class.
 
 
 \end{document}
